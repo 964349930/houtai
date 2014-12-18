@@ -1,0 +1,65 @@
+<include file="Public:header" />
+<include file="Public:nav" />
+<!-- 幻灯开始 -->
+<div data-role="page" id="menu">
+<!-- /navbar -->
+<!-- start 幻灯片 -->
+<div class="container" style="padding:0; position:relative;">
+  <div class="banner">
+  <link rel="stylesheet" href="../Public/css/index.css">
+  <script type="text/javascript" src="../Public/js/common/iscroll.js"></script>
+  <script>
+  var myScroll;
+      function loaded() {
+          myScroll = new iScroll('wrapper', {
+              snap: true,
+              momentum: false,
+              hScrollbar: false,
+              onScrollEnd: function() {
+                  document.querySelector('#indicator > li.active').className = '';
+                  document.querySelector('#indicator > li:nth-child(' + (this.currPageX + 1) + ')').className = 'active';
+              }
+          });
+      }
+      document.addEventListener('DOMContentLoaded', loaded, false);
+  </script> 
+    <div id="wrapper" style="overflow: hidden; ">
+       <div id="scroller">
+         <ul id="thelist">
+           <volist name="bannerList" id="banner">
+           <li><img src="{$banner.img|getPicPath}" /></li>
+           </volist>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div id="nav" >
+    <div id="prev" onClick="javascript:myScroll.scrollToPage('prev', 0);"></div>
+      <ul id="indicator" class="fr pr20">
+      </ul>
+    <div id="next" onClick="javascript:myScroll.scrollToPage('next', 0, 400, 2);">
+    </div>
+  </div>
+  <div class="clr"></div>
+</div>
+<script type="text/javascript" src="../Public/js/banner.js"></script>
+<!-- 幻灯结束 -->
+
+<!-- 列表开始 -->
+<div class="product_tj fl clearfix">
+  <ul>
+    <volist name="list" id="vo">
+    <li><a href="{:U('Circles/ls', array('group_id'=>$vo[id]))}">
+      <div class="photo">
+        <img src="{$vo.cover|getPicPath}">
+      </div>
+      <span>{$vo.title}</span>
+      <div class="jt_r">
+        <img src="../Public/img/jt_r.png">
+      </div>
+    </a></li>
+    </volist>
+  </ul>
+</div>
+<!-- 列表结束 -->
+<include file="Public:bar" />

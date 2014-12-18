@@ -1,0 +1,81 @@
+<include file="Public:header" />
+<!-- 头部开始 -->
+<div class="header">
+  <div class="box1"><a href="javascript:window.history.go(-1);"><img src="../Public/img/jt_02.png"></a></div>
+  <div class="box2"><h1>我的收藏</h1></div>
+  <div class="box3"><a href="#"><img src="../Public/img/trash.png"></a></div>
+</div>
+<!-- 头部结束 -->
+
+<!-- 导航开始 -->
+<div class="sc_nav clearfix">
+  <ul>
+    <li><a href="{:U('Customer/collectList', array('type'=>'goods'))}" class="border-r">产品收藏</a></li>
+    <li><a href="{:U('Customer/collectList', array('type'=>'shops'))}" class="border-r">机构收藏</a></li>
+    <li><a href="{:U('Customer/collectList', array('type'=>'articles'))}">活动收藏</a></li>
+  </ul>
+</div>
+<!-- 导航结束 -->
+<if condition="$type eq 'goods'">
+  <!-- 产品列表开始 -->
+  <volist name="list" id="vo">
+    <div class="product_list clearfix mt10">
+      <a href="#" onClick="collect_select('goods', {$vo.id})">
+        <div class="radio"></div>
+        <table width="90%">
+          <tr>
+            <td width="40%"><h1>{$vo.info.name}</h1></td>
+            <td><span>已申购 <font style="font-weight:800">10235 人</font></span></td>
+            <td><img src="../Public/img/tag01.png"></td>
+          </tr>
+          <tr>
+            <td width="30%">预期年化</td>
+            <td>万份收益</td>
+            <td><font color="#d34825">限</font>12个月</td>
+          </tr>
+          <tr>
+            <td width="30%"><font color="#d34825">{$vo.yield}%</font></td>
+            <td><font style="font-weight:800">1.8500</font> 元</td>
+            <td><font style="font-weight:800">{$vo.begin}</font> 元起购</td>
+          </tr>
+        </table>
+      </a>
+    </div>
+  </volist>
+  <elseif condition="$type eq 'shops'" />
+  <volist name="list" id="vo">
+    <div class="lc_list clearfix border-t mt10">
+      <div class="list_l">
+        <a href="#" onClick="collect_select('shops', {$vo.id})">
+          <div class="radio"></div>
+          <div class="photo">
+            <img src="{$vo.info.cover|getPicPath}">
+          </div>
+          <div class="wb">
+            <h3>{$vo.info.title}</h3>
+            <p>{$vo.info.intro|csubstr=###,0,8,"..."}</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </volist>
+  <else />
+  <div class="active_list mt10 clearfix">
+    <volist name="list" id="vo">
+      <a href="#" onClick="collect_select('articles', {$vo.id})">
+        <div class="radio"></div>
+        {$vo.info.title}
+      </a>
+    </volist>
+  </div>
+</if>
+<script>
+function collect_select(type, id){
+}
+</script>
+<!-- 浮窗开始 -->
+<div class="button_sq border-t">
+  <button type="button">删除所选消息</button>
+</div>
+<!-- 浮窗结束 -->
+<include file="Public:bar" />

@@ -1,0 +1,42 @@
+<include file="Public:header" />
+<include file="Public:nav" />
+<!-- 个人中心头部 -->
+<div class="user_gz">
+  <div class="tx">
+    <a href="#"><img src="../Public/img/user_02.jpg"></a>
+  </div>
+  <div class="user_name">
+    <a href="#">{$info.mobile}</a>
+  </div>
+</div>
+<!-- 个人中心头部结束 -->
+<div class="user_list mt10 border-t border-b">
+  <div class="container border-b">
+    <a href="{:U('Users/base')}"><span>我的账户</span><img src="../Public/img/jt_r.png"></a>
+  </div>
+  <div class="container border-b">
+    <a href="{:U('Users/order')}"><span>我的订单</span><img src="../Public/img/jt_r.png"></a>
+  </div>
+  <in name="_SESSION[yh_gid]" value="1">
+  <div class="container border-b">
+    <a href="{:U('Customer/collectList')}"><span>我的收藏</span><img src="../Public/img/jt_r.png"></a>
+  </div>
+  </in>
+  <!-- <in name="_SESSION[yh_gid]" value="1"> -->
+  <!-- <div class="container border-b"> -->
+  <!--   <a href="{:U('Users/articles_goods')}"><span>我的话题</span><img src="../Public/img/jt_r.png"></a> -->
+  <!-- </div> -->
+  <!-- </in> -->
+  <in name="_SESSION[yh_gid]" value="3">
+  <div class="container border-b">
+    <a href="{:U('Bank/set')}"><span>机构管理</span><img src="../Public/img/jt_r.png"></a>
+  </div>
+  </in>
+  <in name="_SESSION[yh_gid]" value="3">
+  <div class="container border-b">
+    <a href="{:U('Bank/managerList')}"><span>客户经理管理</span><img src="../Public/img/jt_r.png"></a>
+  </div>
+  </in>
+</div>
+<a href="{:U('Public/logout')}"><button class="btn" type="button">退出登录</button></a>
+<include file="Public:bar" />

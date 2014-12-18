@@ -1,0 +1,20 @@
+<include file="Public:header" />
+<include file="Public:nav" />
+<!-- 内容开始 -->
+<div class="new_content clearfix mt10">
+  <ul>
+    <volist name="list" id="vo">
+    <li class="clearfix">
+      <div class="new_list">
+        <a href="{:U('Circles/info', array('id'=>$vo[id]))}">{$vo.title}</a>
+      </div>
+      <div class="new_r">
+        <a href="#"><img src="../Public/img/zan01.png">326</a>
+        <a href="#"><img src="../Public/img/talk01.png">35</a>
+      </div>
+    </li>
+    </volist>
+  </ul>
+</div>
+<!-- 内容结束 -->
+<include file="Public:bar" />

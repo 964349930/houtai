@@ -1,0 +1,27 @@
+<include file="Public:header" />
+<div class="tabs">
+    <ul>
+        <li class="current"><a href="javascript:void(0)" class="current">添加圈子</a></li>
+    </ul>
+</div>
+<div class="edit">
+    <form method="post" action="{:U('Circles/doAddGroup')}" enctype="multipart/form-data">
+        <dl>
+            <dt>名称：</dt>
+            <dd><input type="text" name="title" class="w200" /></dd>
+        </dl>
+        <dl>
+          <dt>图标：</dt>
+          <dd><input type="file" name="pic" class="w200"></dd>
+        </dl>
+        <dl>
+            <dt>排序：</dt>
+            <dd><input type="number" name="sort" class="w200"></dd>
+        </dl>
+        <dl>
+            <dt></dt>
+            <dd><input type="submit" value="添 加" class="btn submit-btn" /></dd>
+        </dl>
+    </form>
+</div>
+<include file="Public:footer" />

@@ -1,0 +1,121 @@
+<include file="Public:header" />
+<!-- 头部开始 -->
+<div class="header">
+  <div class="box1"><a href="javascript:window.history.go(-1);"><img src="../Public/img/jt_02.png"></a></div>
+  <div class="box2"><h1>{$info.name}</h1></div>
+  <div class="box3"><a href="javascript:;" data-href="{:U('Customer/collect', array('id'=>$info[id], 'type'=>'goods'))}"><img src="../Public/img/sc.png"></a></div>
+</div>
+<script>
+  var checkurl = '{:U(\'Customer/iscollect\', array(\'id\'=>$info[id], \'type\'=>\'goods\'))}';
+  $.getJSON(checkurl, function(data){
+    if(data){
+      var img = "../Public/img/sc01.png";
+    }else{
+      var img = "../Public/img/sc.png";
+    }
+    $(".header > .box3 > a > img").attr("src", img);
+  });
+  $(".header > .box3 > a").click(function(){
+    var url = $(this).attr("data-href");
+    $.getJSON(url, function(data){
+    if(data){
+      var img = "../Public/img/sc01.png";
+    }else{
+      var img = "../Public/img/sc.png";
+    }
+    $(".header > .box3 > a > img").attr("src", img);
+  });
+  })
+</script>
+<!-- 头部结束 -->
+
+<!--  内容开始 -->
+<div class="cp_top border-b cp clearfix">
+  <div class="cp_l">
+    <p>预期年化收益</p>
+    <span>{$info.yield}%</span>
+  </div>
+  <div class="cp_r">
+    <p>投资期限{$info.deadline}年</p>
+    <p>投资起点（元）</p>
+    <p>{$info.begin}</p>
+  </div>
+</div>
+
+<!-- 列表开始 -->
+<div class="product_top fl mt10 clearfix">
+  <img src="../Public/img/zs.jpg">
+  <h1>申购情况</h1>
+</div>
+<div class="sg_list border-t border-b mt10 clearfix">
+  <div class="sg_list1 border-d">
+    <a href="#"><span>销售结束日</span>
+    <div class="right">2014-12-31</div></a>
+  </div>
+  <div class="sg_list1 border-d">
+    <a href="#"><span>投资到期日</span>
+    <div class="right">2014-12-31</div></a>
+  </div>
+  <div class="sg_list1 border-d">
+    <a href="#"><span>风险等级</span>
+    <div class="right">有一定风险 3R</div></a>
+  </div>
+  <div class="sg_list1 border-d">
+    <a href="#"><span>已申购人数</span>
+    <div class="right">10235 人</div></a>
+  </div>
+  <div class="sg_list1">
+    <a href="#"><span>购买笔数</span>
+    <div class="right">9168 笔</div></a>
+  </div>
+</div>
+
+<div class="product_top fl mt10 clearfix">
+  <img src="../Public/img/zs.jpg">
+  <h1>安全保护</h1>
+</div>
+<div class="safe_list border-t border-b mt10 clearfix">
+  <div class="safe_list1 border-d">
+    <img src="../Public/img/safe01.png">
+    <span>监管安全</span>
+    <div class="safe_wb">
+      <p>放心购买，每单进行责任金备付、</p>
+      <p>安全无忧，每单缴纳保障基金</p>
+    </div>
+  </div>
+  <div class="safe_list1">
+    <img src="../Public/img/safe02.png">
+    <span>公司安全</span>
+    <div class="safe_wb">
+      <p>实力雄厚，五亿注册资本金</p>
+      <p>信誉保证，国家特许金融经营牌照</p>
+    </div>
+  </div>
+</div>
+
+<div class="product_top fl mt10 clearfix">
+  <img src="../Public/img/zs.jpg">
+  <h1>机构名称</h1>
+</div>
+<div class="lc_list fl mt10 border-t clearfix">
+  <div class="list_l">
+    <a href="{:U('Shops/index', array('id'=>$shop[id]))}">
+      <div class="photo">
+        <img src="{$shop.cover|getPicPath}">
+      </div>
+      <div class="wb">
+        <h3>{$shop.title}</h3>
+        <p>{$shop.intro}</p>
+      </div>
+    </a>
+  </div>
+</div>
+<!-- 列表结束 -->
+<!--  内容结束 -->
+
+<!-- 浮窗开始 -->
+<div class="button_sq border-t">
+  <a href="{:U('Customer/writeOrder', array('goods_id'=>$info[id]))}"><button type="button">申请</button></a>
+</div>
+<!-- 浮窗结束 -->
+<include file="Public:bar" />

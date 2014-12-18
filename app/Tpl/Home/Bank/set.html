@@ -1,0 +1,18 @@
+<include file="Public:header" />
+<include file="Public:nav" />
+<!-- 内容开始 -->
+<div class="user_list mt10 border-t border-b">
+  <form method="post" action="{:U('Bank/doSet')}" enctype="multipart/form-data">
+  <div class="zc01 border-b">
+    <h4 style="border-right: 1px solid #b4b4b4;color: #000;font-size: 16px;margin: 8px 0 0 1.5%;padding: 10px;">Banner</h4>
+    <input type="file" name="pic" style="width:100%;">
+    <notempty name="info[banner]"><img src="{$info.banner|getPicPath}" height="50px"></notempty>
+  </div>
+  <div class="zc01 border-b">
+    <h4 style="border-right: 1px solid #b4b4b4;color: #000;font-size: 16px;margin: 8px 0 0 1.5%;padding: 10px;">简介</h4>
+    <textarea name="intro" style="border: 1px solid #e0e0e0;color: #666;font-size: 14px;padding:5px;width:100%;" cols="15" rows="10">{$info.intro}</textarea>
+  </div>
+  <input type="submit" class="dl_btn" value="更新">
+  </form>
+</div>
+<include file="Public:bar" />

@@ -1,0 +1,47 @@
+<include file="Public:header" />
+<include file="Public:nav" />
+<div class="content clearfix">
+  <div class="content_top">
+    <img src="../Public/img/jgxq.jpg">
+  </div>
+  <div class="content_wz">
+    <h1>{$info.title}</h1>
+    <span>{$info.date_modify|date="Y-m-d H:i", ###}</span>
+    <p>{$info.info}</p>
+  </div>
+</div>
+<div class="new_talk border-t border-b clearfix mt20">
+  <table width="100%" border="0" cellpadding="0" cellspacing="0">
+    <tr>
+      <td class="border-r"><a href="#"><img src="../Public/img/zan01.png">赞</a></td>
+      <td class="border-r"><a href="#"><img src="../Public/img/talk01.png">评论</a></td>
+      <td class="border-r"><a href="#"><img id="collect" src="../Public/img/sc01.png">收藏</a></td>
+      <td><a href="#"><img src="../Public/img/share01.png">分享</a></td>
+    </tr>
+  </table>
+</div>
+<script>
+  var checkurl = '{:U(\'Customer/iscollect\', array(\'id\'=>$info[id], \'type\'=>\'articles\'))}';
+  $.getJSON(checkurl, function(data){
+    if(data){
+      var img = "../Public/img/sc01.png";
+    }else{
+      var img = "../Public/img/sc.png";
+    }
+    $("#collect").attr("src", img);
+  });
+  $("#collect").click(function(){
+    var url = '{:U(\'Customer/collect\', array(\'id\'=>$info[id], \'type\'=>\'articles\'))}';
+    $.getJSON(url, function(data){
+    if(data){
+      var img = "../Public/img/sc01.png";
+    }else{
+      var img = "../Public/img/sc.png";
+    }
+    $("#collect").attr("src", img);
+  });
+  })
+</script>
+
+<!-- 内容结束 -->
+<include file="Public:bar" />

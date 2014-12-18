@@ -1,0 +1,24 @@
+<include file="Public:header" />
+<include file="Public:nav" />
+<!-- 内容开始 -->
+<form method="post" action="{:U('Public/doLogin')}">
+  <div class="zc">
+  <div class="zc01 border-b">
+    <input type="text" name="mobile" placeholder="请输入手机号">
+    <span>手机号</span>
+  </div>
+  <div class="zc01">
+    <input type="password" name="password" placeholder="请输入密码">
+    <span>密码</span>
+  </div>
+</div>
+<div class="zc02 mb10">
+  <input type="checkbox" name="test"><span>记住密码</span>
+  <a href="#">忘记密码？</a>
+</div>
+<input type="submit" class="dl_btn" value="登录">
+<a href="{:U('Public/customer_reg')}"><button type="button" class="yh_btn">用户注册</button></a>
+<a href="{:U('Public/manager_reg')}"><button type="button" class="kh_btn">客户经理注册</button></a>
+<!-- 内容结束 -->
+<include file="Public:bar" />
+<include file="Public:footer" />

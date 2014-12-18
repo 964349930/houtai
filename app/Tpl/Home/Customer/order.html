@@ -1,0 +1,39 @@
+<include file="Public:header" />
+<include file="Public:nav" />
+<!-- 导航开始 -->
+<div class="form1_nav" id="order_nav">
+  <ul>
+    <li><a href="{:U('Customer/order', array('status'=>'1'))}" <eq name="status" value="1">class="active"</eq>>新订单</a></li>
+    <li><a href="{:U('Customer/order', array('status'=>'3'))}" <eq name="status" value="3">class="active"</eq>>处理中</a></li>
+    <li><a href="{:U('Customer/order', array('status'=>'4'))}" <eq name="status" value="4">class="active"</eq>>已完成</a></li>
+    <li><a href="{:U('Customer/order', array('status'=>'5'))}" <eq name="status" value="5">class="active"</eq>>无效</a></li>
+  </ul>
+</div>
+<!-- 导航结束 -->
+
+<!-- 内容开始 -->
+<volist name="list" id="order">
+<div class="product_list clearfix">
+  <a href="#">
+    <table width="94%">
+      <tr>
+        <td width="40%"><h1>{$order.name}</h1></td>
+        <td><span>已申购10235 人</span></td>
+        <td><img src="../Public/img/tag01.png"></td>
+      </tr>
+      <tr>
+        <td width="30%">预期年化</td>
+        <td>万份收益</td>
+        <td>限12个月</td>
+      </tr>
+      <tr>
+        <td width="30%">6.80%+0.2%</td>
+        <td>1.8500 元</td>
+        <td>50 元起购</td>
+      </tr>
+    </table>
+  </a>
+</div>
+</volist>
+<!-- 内容结束 -->
+<include file="Public:bar" />

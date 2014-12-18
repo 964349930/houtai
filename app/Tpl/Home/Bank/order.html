@@ -1,0 +1,86 @@
+<include file="Public:header" />
+<include file="Public:nav" />
+<!-- 导航开始 -->
+<div class="form_nav clearfix">
+  <ul>
+    <li><a href="{:U('Bank/order')}" class="border-r">新订单</a><notempty name="count"><span>{$count}</span></notempty></li>
+    <li><a href="{:U('Bank/orderOver')}">已分配</a></li>
+  </ul>
+</div>
+<!-- 导航结束 -->
+
+<!-- 内容开始 -->
+<volist name="list" id="order">
+  <div class="order_list">
+<div class="form_content mt10 clearfix border-t">
+  <div class="form_top">
+    <h3>客户信息：</h3>
+    <span class="red">{$order.customer}，{$order.mobile}</span>
+    <span class="time">{$order.date_create|date="Y-m-d H:i", ###}</span>
+  </div>
+</div>
+<div class="product_list clearfix">
+  <a href="#">
+    <table width="94%">
+      <tr>
+        <td width="40%"><h1>合盈优选SA465号</h1></td>
+        <td><span>已申购10235 人</span></td>
+      </tr>
+      <tr>
+        <td width="30%">预期年化</td>
+        <td>万份收益</td>
+        <td>限12个月</td>
+      </tr>
+      <tr>
+        <td width="30%">6.80%+0.2%</td>
+        <td>1.8500 元</td>
+        <td>50 元起购</td>
+      </tr>
+    </table>
+  </a>
+</div>
+<div class="form_btn fr border-b">
+  <button type="button" data-id="{$order.id}">分配订单</button>
+</div>
+</div>
+</volist>
+
+<!-- 弹出开始 -->
+<div id="order_window" style="width:100%;z-index:99;position:absolute;top:44px;display:none;background-color:#fff;opacity:0.95;height:600px;">
+<div class="tc_top">
+  <span>分配订单</span>
+  <img src="../Public/img/close.png">
+</div>
+<volist name="managerList" id="manager">
+<div class="tc_list border-t border-b" data-id="{$manager.id}">
+  <label><span>{$manager.name}</span></label>
+</div>
+</volist>
+<div class="tc_btn border-b">
+  <button type="button" class="btn2">取消</button>
+  <a id="send" href="javascript:;" data-href="{:U('Bank/choiceManager')}" data-id="0"><button type="button" class="btn1">确定</button></a>
+</div>
+</div>
+<script>
+  $("#order_window > .border-t").click(function(){
+    $(this).addClass("manager_select");
+    $(this).siblings().removeClass("manager_select");
+    var id = $("#send").attr("data-id");
+    var manager_id = $(this).attr("data-id");
+    var href = $("#send").attr("data-href");
+    $("#send").attr("href", href+"&id="+id+"&manager_id="+manager_id);
+  })
+  $(".order_list").find(".border-b > button").click(function(){
+    var id = $(this).attr("data-id");
+    $("#send").attr("data-id", id);
+    $("#order_window").fadeIn();
+  });
+  $("#order_window").find(".tc_top > img").click(function(){
+    $("#order_window").fadeOut();
+  });
+  $("#order_window").find(".border-b > button.btn2").click(function(){
+    $("#order_window").fadeOut();
+  })
+</script>
+<!-- 弹出结束 -->
+<include file="Public:bar" />

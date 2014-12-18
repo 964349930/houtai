@@ -1,0 +1,97 @@
+<include file="Public:header" />
+<!-- 头部开始 -->
+<div class="header">
+  <div class="box1"><a href="javascript:window.history.go(-1);"><img src="../Public/img/jt_02.png"></a></div>
+  <div class="box2"><h1>{$info.title}</h1></div>
+  <div class="box3"><a href="javascript:;" data-href="{:U('Customer/collect', array('id'=>$info[id], 'type'=>'shops'))}"><img src="../Public/img/sc.png"></a></div>
+</div>
+<!-- 头部结束 -->
+<script>
+  var checkurl = '{:U(\'Customer/iscollect\', array(\'id\'=>$info[id], \'type\'=>\'shops\'))}';
+  $.getJSON(checkurl, function(data){
+    if(data){
+      var img = "../Public/img/sc01.png";
+    }else{
+      var img = "../Public/img/sc.png";
+    }
+    $(".header > .box3 > a > img").attr("src", img);
+  });
+  $(".header > .box3 > a").click(function(){
+    var url = $(this).attr("data-href");
+    $.getJSON(url, function(data){
+    if(data){
+      var img = "../Public/img/sc01.png";
+    }else{
+      var img = "../Public/img/sc.png";
+    }
+    $(".header > .box3 > a > img").attr("src", img);
+  });
+  })
+</script>
+
+<!-- 内容开始 -->
+
+<div class="content clearfix">
+  <div class="content_top">
+    <img src="{$info.banner|getPicPath}">
+  </div>
+  <div class="content_wz">
+    <p>{$info.intro}</p>
+  </div>
+</div>
+
+<div class="product_top mt10 clearfix">
+  <img src="../Public/img/zs.jpg">
+  <h1>活动中心</h1>
+</div>
+<div class="active_list mt10 clearfix">
+  <a href="#">
+    “八月‘忠’情月，喜新更念旧”感恩回馈月活动
+   </a>
+   <a href="#">
+    激情世界杯，申购赢大奖 
+   </a>
+   <a href="#" class="border-b">
+    “八月‘忠’情月，喜新更念旧”感恩回馈月活动
+   </a>
+</div>
+
+<div class="product_top fl mt10 clearfix">
+  <img src="../Public/img/zs.jpg">
+  <h1>产品推荐</h1>
+</div>
+<!-- 产品列表开始 -->
+<volist name="goodsList" id="goods">
+<div class="product_list clearfix">
+  <a href="{:U('Goods/info', array('id'=>$goods[id]))}">
+    <table width="94%">
+      <tr>
+        <td width="30%"><h1>{$goods.name}</h1></td>
+        <td><img src="../Public/img/tag01.png"></td>
+      </tr>
+      <tr>
+        <td width="30%">预期年化</td>
+        <td>万份收益</td>
+        <td><font color="#d34825">限</font>12个月</td>
+      </tr>
+      <tr>
+        <td width="30%"><font color="#d34825">{$goods.yeild}%</font></td>
+        <td><font style="font-weight:800">1.8500</font> 元</td>
+        <td><font style="font-weight:800">{$goods.begin}</font> 元起购</td>
+      </tr>
+    </table>
+  </a>
+</div>
+</volist>
+<!-- 产品列表结束 -->
+<div class="product_top fl mt10 clearfix">
+  <img src="../Public/img/zs.jpg">
+  <h1>客户经理</h1>
+</div>
+<div class="active_list mt10 clearfix">
+  <volist name="managerList" id="manager">
+  <a href="#">{$manager.name}</a>
+  </volist>
+</div>
+<!-- 内容结束 -->
+<include file="Public:bar" />

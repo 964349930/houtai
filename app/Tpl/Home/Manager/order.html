@@ -1,0 +1,51 @@
+<include file="Public:header" />
+<include file="Public:nav" />
+<!-- 导航开始 -->
+<div class="form1_nav" id="order_nav">
+  <ul>
+    <li><a href="{:U('Manager/order', array('status'=>'2'))}" <eq name="status" value="2">class="active"</eq>>新订单</a></li>
+    <li><a href="{:U('Manager/order', array('status'=>'3'))}" <eq name="status" value="3">class="active"</eq>>处理中</a></li>
+    <li><a href="{:U('Manager/order', array('status'=>'4'))}" <eq name="status" value="4">class="active"</eq>>已完成</a></li>
+    <li><a href="{:U('Manager/order', array('status'=>'5'))}" <eq name="status" value="5">class="active"</eq>>无效</a></li>
+  </ul>
+</div>
+<!-- 导航结束 -->
+
+<!-- 内容开始 -->
+<volist name="list" id="order">
+<div class="form_content mt10 clearfix border-t">
+  <div class="form_top">
+    <h3>客户信息：</h3>
+    <span class="red">{$order.customer}，{$order.mobile}</span>
+    <span class="time">{$order.date_create|date="Y-m-d H:i", ###}</span>
+  </div>
+</div>
+<div class="product_list clearfix">
+  <a href="#">
+    <table width="94%">
+      <tr>
+        <td width="40%"><h1>合盈优选SA465号</h1></td>
+        <td><span>已申购10235 人</span></td>
+        <td><img src="../Public/img/tag01.png"></td>
+      </tr>
+      <tr>
+        <td width="30%">预期年化</td>
+        <td>万份收益</td>
+        <td>限12个月</td>
+      </tr>
+      <tr>
+        <td width="30%">6.80%+0.2%</td>
+        <td>1.8500 元</td>
+        <td>50 元起购</td>
+      </tr>
+    </table>
+  </a>
+</div>
+<div class="form_btn fr border-b">
+  <in name="status" value="2,3"><a href="{:U('Manager/changeOrder', array('id'=>$order[id],'status'=>'5'))}"><button type="button">无效</button></a></in>
+  <in name="status" value="3"><a href="{:U('Manager/changeOrder', array('id'=>$order[id],'status'=>'4'))}"><button type="button">完成</button></a></in>
+  <in name="status" value="2"><a href="{:U('Manager/changeOrder', array('id'=>$order[id],'status'=>'3'))}"><button type="button">处理</button></a></in>
+</div>
+</volist>
+<!-- 内容结束 -->
+<include file="Public:bar" />

@@ -1,0 +1,64 @@
+<include file="Public:header" />
+  <!--选项卡 BEGIN-->
+  <div class="tabs">
+    <ul>
+      <li class="current"><a href="javascript:void(0)" class="current">订单列表</a></li>
+    </ul>
+  </div>
+  <!--END 选项卡-->
+  <div class="toolbar">
+  </div>
+  <!--END工具栏 BEGIN-->
+  <!--列表 BEGIN-->
+  <div class="list">
+      <form action="{:U('Orders/del')}" method="post" class="del-form">
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <thead>
+          <tr>
+            <th width="5%"><input type="checkbox" class="check-all" /></th>
+            <th width="15%">申请人</th>
+            <th width="15%">机构</th>
+            <th width="15%">客户经理</th>
+            <th width="15%">产品名称</th>
+            <th width="15%">状态</th>
+            <th width="10%">创建时间</th>
+            <th width="10%">操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <empty name="list">
+            <tr>
+              <td colspan="11" class="empty">暂无相关信息</td>
+            </tr>
+          <else />
+          <volist name="list" id="vo">
+              <tr>
+                <td><input type="checkbox" name="id[]" value="{$vo.id}"></td>
+                <td>{$vo.customer}</td>
+                <td>{$vo.shop}</td>
+                <td>{$vo.manager}</td>
+                <td>{$vo.name}</td>
+                <td>{$vo.status}</td>
+                <td>{$vo.date_create|date="Y-m-d H:i", ###}</td>
+                <td>
+                    <a href="{:U('Orders/del',array('id'=>$vo[id]))}">删除</a>
+                </td>
+              </tr>
+            </volist>
+          </empty>
+        </tbody>
+      </table>
+    </form>
+  </div>
+  <!--列表 END-->
+
+  <!--工具栏 BEGIN-->
+  <div class="toolbar">
+    <a href="javascript:void(0)" class="btn del-btn"><span>删除</span></a>
+    <div class="page right">
+      {$pages}
+    </div>
+  </div>
+  <!--END 工具栏-->
+
+<include file="Public:footer" />

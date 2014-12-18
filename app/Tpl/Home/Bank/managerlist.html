@@ -1,0 +1,30 @@
+<include file="Public:header" />
+<include file="Public:nav" />
+<!-- 内容开始 -->
+<div class="form_content mt10">
+  <ul>
+    <volist name="list" id="manager">
+      <li class="manager_header">
+        <a href="#" style="width:60%;">
+          <span>{$manager.name}</span>
+        </a>
+        <div class="form_right">
+          <a href="{:U('Bank/changeManager', array('manager_id'=>$manager[id]))}">
+            <button type="button"><eq name="manager[status]" value="1">已授权<else />待审核</eq></button>
+          </a>
+        </div>
+        <ul style="display:none;">
+          <li><span>姓名：{$manager.name}</span></li>
+          <li><span>手机：{$manager.mobile}</span></li>
+          <li><span>邮箱：{$menager.email}</span></li>
+        </ul>
+      </li>
+    </volist>
+  </ul>
+  <script>
+    $(".form_content > ul > li > a").click(function(){
+      $(this).parent("li").find("ul").toggle();
+    })
+  </script>
+</div>
+<include file="Public:bar" />

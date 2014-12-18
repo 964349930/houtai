@@ -1,0 +1,107 @@
+<include file="Public:header" />
+<!-- 头部开始 -->
+<div class="header">
+  <div class="box0 ml20"><a href="#">济南<img src="../Public/img/jt_01.png"></a></div>
+  <div class="box2"><h1>有元宝</h1></div>
+  <div class="box3"><a href="#"><img src="../Public/img/top.png"></a></div>
+</div>
+<!-- 头部结束 -->
+
+<!-- 幻灯开始 -->
+<div data-role="page" id="menu">
+<!-- /navbar -->
+<!-- start 幻灯片 -->
+<div class="container" style="padding:0; position:relative;">
+  <div class="banner">
+  <link rel="stylesheet" href="../Public/css/index.css">
+  <script type="text/javascript" src="../Public/js/common/iscroll.js"></script>
+  <script>
+  var myScroll;
+      function loaded() {
+          myScroll = new iScroll('wrapper', {
+              snap: true,
+              momentum: false,
+              hScrollbar: false,
+              onScrollEnd: function() {
+                  document.querySelector('#indicator > li.active').className = '';
+                  document.querySelector('#indicator > li:nth-child(' + (this.currPageX + 1) + ')').className = 'active';
+              }
+          });
+      }
+      document.addEventListener('DOMContentLoaded', loaded, false);
+  </script>
+    <div id="wrapper" style="overflow: hidden; ">
+       <div id="scroller">
+         <ul id="thelist">
+           <volist name="bannerList" id="banner">
+           <li><img src="{$banner.img|getPicPath}"/></li>
+           </volist>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div id="nav" >
+    <div id="prev" onClick="javascript:myScroll.scrollToPage('prev', 0);"></div>
+      <ul id="indicator" class="fr pr20">
+      </ul>
+    <div id="next" onClick="javascript:myScroll.scrollToPage('next', 0, 400, 2);">
+    </div>
+  </div>
+  <div class="clr"></div>
+</div>
+<script type="text/javascript" src="../Public/js/banner.js"></script>
+<!-- 幻灯结束 -->
+
+<!-- 导航开始 -->
+<div class="sub_nav mt10 clearfix">
+  <table width="100%" border="0" cellpadding="0" cellspacing="0">
+    <tr>
+      <td width="25%"><a href="{:U('Goods/ls', array('type_id'=>'1'))}"><img src="../Public/img/nav_01.png"><span>银行理财</span></a></td>
+      <td width="25%"><a href="{:U('Goods/ls', array('type_id'=>'2'))}"><img src="../Public/img/nav_02.png"><span>信托产品</span></a></td>
+      <td width="25%"><a href="{:U('Goods/ls', array('type_id'=>'3'))}"><img src="../Public/img/nav_03.png"><span>资产管理产品</span></a></td>
+      <td width="25%"><a href="{:U('Goods/ls', array('type_id'=>'4'))}"><img src="../Public/img/nav_04.png"><span>基金</span></a></td>
+    </tr>
+  </table>
+</div>
+<!-- 导航结束 -->
+
+<!-- 列表开始 -->
+<div class="product_top mt10 clearfix">
+  <img src="../Public/img/zs.jpg">
+  <h1>产品推荐</h1>
+</div>
+<div class="product_tj fl clearfix">
+  <ul>
+    <volist name="goodsList" id="goods">
+      <li><a href="{:U('Goods/info', array('id'=>$goods[id]))}">
+          <div class="photo">
+            <img src="{$goods.cover}">
+          </div>
+          <div class="wb">
+            <h3>{$goods.name}</h3>
+            <p>{$goods.intro}</p>
+          </div>
+          <div class="jt_r">
+            <img src="../Public/img/jt_r.png">
+          </div>
+      </a></li>
+    </volist>
+  </ul>
+</div>
+<!-- 列表结束 -->
+<include file="Public:bar" />
+<include file="Public:footer" />
+<script>
+  window.onload = function getLocation(){
+    navigator.geolocation.getCurrentPosition(setLocation);
+  }
+  function setLocation(position){
+//    var url = 'http://api.map.baidu.com/geocoder?location='+position.coords.latitude+','+position.coords.longitude+'&output=json&key=5c1da412cb98cbde54f87d45d8feda56';
+    var url = '{:U(\'Index/getCity\')}';
+    $.getJSON(url, {latitude:position.coords.latitude,longitude:position.cords.longitude}, function(data){
+    var city = data[result][addressComponent][city];
+    alert(city);
+      $(".header > .box0 > a").html(city);
+    })
+  }
+</script>

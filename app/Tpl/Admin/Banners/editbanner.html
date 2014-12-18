@@ -1,0 +1,41 @@
+<include file="Public:header" />
+<div class="tabs">
+    <ul>
+        <li class="current"><a href="javascript:void(0)" class="current">编辑产品</a></li>
+    </ul>
+</div>
+<div class="edit">
+    <form method="post" action="{:U('Circles/doEditArticle')}" enctype="multipart/form-data">
+      <input type="hidden" name="id" value="{$info.id}"  />
+        <dl>
+            <dt>标题：</dt>
+            <dd><input type="text" name="title" class="w200" value="{$info.title}"/></dd>
+        </dl>
+        <dl>
+            <dt>分组：</dt>
+            <dd><select name="group_id" value="{$info.group_id}">
+                <volist name="list" id="vo">
+                <option value="{$vo.id}" <eq name="vo[id]" value="info[group_id]">selected</eq>>{$vo.title}</option>
+                </volist>
+                </select></dd>
+        </dl>
+        <dl>
+          <dt>图片：</dt>
+          <dd><input type="file" name="pic"></dd>
+          <notempty><dd><img src="{$info.img|getPicPath}"></dd></notempty>
+        </dl>
+        <dl>
+          <dt>链接地址：</dt>
+          <dd><input type="text" name="link" value="{$info.link}"></dd>
+        </dl>
+        <dl>
+          <dt>排序：</dt>
+          <dd><input type="number" name="sort" value="{$info.sort}"></dd>
+        </dl>
+        <dl>
+            <dt></dt>
+            <dd><input type="submit" value="更 新" class="btn submit-btn" /></dd>
+        </dl>
+    </form>
+</div>
+<include file="Public:footer" />

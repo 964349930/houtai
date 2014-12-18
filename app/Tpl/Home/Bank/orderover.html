@@ -1,0 +1,23 @@
+<include file="Public:header" />
+<include file="Public:nav" />
+<!-- 导航开始 -->
+<div class="form_nav clearfix">
+  <ul>
+    <li><a href="{:U('Bank/order')}" class="border-r">新订单</a><notempty name="count"><span>{$count}</span></notempty></li>
+    <li><a href="{:U('Bank/orderOver')}">已分配</a></li>
+  </ul>
+</div>
+<!-- 导航结束 -->
+
+<!-- 内容开始 -->
+<volist name="list" id="order">
+<div class="form_content mt10">
+  <ul>
+    <li><span class="form_product">{$order.name}</span><span class="time">{$order.date_create|date="Y-m-d H:i", ###}</span></li>
+    <li><h3>客户信息：{$order.customer}，{$order.mobile}</h3></li>
+    <li><h3>经纪人：{$order.manager}</h3></li>
+  </ul>
+</div>
+</volist>
+<!-- 内容结束 -->
+<include file="Public:bar" />

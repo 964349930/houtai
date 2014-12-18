@@ -1,0 +1,28 @@
+<include file="Public:header" />
+<div class="tabs">
+    <ul>
+        <li class="current"><a href="javascript:void(0)" class="current">添加机构</a></li>
+    </ul>
+</div>
+<div class="edit">
+    <form method="post" action="{:U('Users/doEdit')}" enctype="multipart/form-data">
+      <input type="hidden" name="id" value="{$info.id}"  />
+        <dl>
+            <dt>名称：</dt>
+            <dd><input type="text" name="name" class="w200" value="{$info.name}"/></dd>
+        </dl>
+        <dl>
+            <dt>手机号码：</dt>
+            <dd><input type="text" name="mobile" class="w200" value="{$info.mobile}"/></dd>
+        </dl>
+        <dl>
+            <dt>邮箱：</dt>
+            <dd><input type="text" name="email" class="w200" value="{$info.email}" /></dd>
+        </dl>
+        <dl>
+            <dt></dt>
+            <dd><input type="submit" value="更 新" class="btn submit-btn" /></dd>
+        </dl>
+    </form>
+</div>
+<include file="Public:footer" />
