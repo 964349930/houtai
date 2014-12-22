@@ -2,7 +2,7 @@
 class BannersAction extends AdminAction
 {
     /**
-    *
+    *幻灯片列表
     */
 
     public function bannerList()
@@ -16,7 +16,7 @@ class BannersAction extends AdminAction
     }
 
     /**
-    *添加
+    *幻灯片添加
     */
 
     public function addBanner()
@@ -27,7 +27,7 @@ class BannersAction extends AdminAction
     }
 
     /**
-    *实现添加
+    *实现幻灯片添加
     */
 
     public function doAddBanner()
@@ -48,7 +48,7 @@ class BannersAction extends AdminAction
     }
 
     /**
-    *更新
+    *更新幻灯片列表
     */
 
     public function editBanner()
@@ -62,7 +62,7 @@ class BannersAction extends AdminAction
     }
 
     /**
-    *完成更新
+    *完成更新幻灯列表
     */
 
     public function doEditBanner()
@@ -83,7 +83,7 @@ class BannersAction extends AdminAction
     }
 
     /**
-    *删除
+    *删除幻灯片列表
     */
 
     public function del()
@@ -109,7 +109,7 @@ class BannersAction extends AdminAction
     }
 
     /**
-    *
+    *分组列表
     */
 
     public function groupList()
@@ -120,7 +120,7 @@ class BannersAction extends AdminAction
     }
 
     /**
-    *添加
+    *实现添加分组
     */
 
     public function doAddGroup()
@@ -135,7 +135,7 @@ class BannersAction extends AdminAction
     }
 
     /**
-    *
+    *更新分组列表
     */
 
     public function editGroup()
@@ -147,7 +147,7 @@ class BannersAction extends AdminAction
     }
 
     /**
-    *
+    *实现更新分组列表
     */
 
     public function doEditGroup()
@@ -161,7 +161,11 @@ class BannersAction extends AdminAction
         }
     }
 
-    public function del()
+    /**
+    *删除分组列表
+    */
+
+    public function delG()
     {
         $delIds = array();
         $postIds = $this->_post('id');
