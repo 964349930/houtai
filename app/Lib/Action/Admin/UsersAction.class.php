@@ -1,6 +1,9 @@
 <?php
 class UsersAction extends AdminAction
 {
+    /**
+    *界面显示
+    */
     public function ls()
     {
         $map['group_id'] = array('neq', '0');
@@ -27,6 +30,10 @@ class UsersAction extends AdminAction
         $this->assign('pages', $page->show());
         $this->display();
     }
+    /**
+    *添加
+    */
+
 
     public function doAdd()
     {
@@ -49,6 +56,9 @@ class UsersAction extends AdminAction
             $this->error('注册失败');
         }
     }
+    /**
+    *更新
+    */
 
     public function edit()
     {
@@ -57,6 +67,10 @@ class UsersAction extends AdminAction
         $this->assign('info', $info);
         $this->display();
     }
+
+    /**
+    *更新提交
+    */
 
     public function doEdit()
     {
@@ -67,6 +81,32 @@ class UsersAction extends AdminAction
             $this->success('更新成功');
         }else{
             $this->error('更新失败');
+        }
+    }
+
+    /**
+    *删除
+    */
+
+    public function del()
+    {
+        $delIds = array();
+        $postIds = $this->_post('id');
+        if(!empty($postIds)){
+            $delIds = $postIds;
+        }
+        $getId = intval($this->_get('id'));
+        if(!empty($getId)){
+            $delIds[] = $getId;
+        }
+        if (empty($delIds)) {
+            $this->error('请选择你要删除的用户');
+        }
+        $arrMap['id'] = array('in',$delIds);
+        if (D('Users')->where($arrMap)->delete()) {
+            $this->success('删除成功');
+        }else{
+            $this->error('删除失败');
         }
     }
 }

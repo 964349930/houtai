@@ -1,6 +1,10 @@
 <?php
 class BannersAction extends AdminAction
 {
+    /**
+    *
+    */
+
     public function bannerList()
     {
         $list = D('Banners')->order('group_id')->select();
@@ -11,12 +15,20 @@ class BannersAction extends AdminAction
         $this->display();
     }
 
+    /**
+    *添加
+    */
+
     public function addBanner()
     {
         $list = D('BannersGroup')->select();
         $this->assign('list', $list);
         $this->display();
     }
+
+    /**
+    *实现添加
+    */
 
     public function doAddBanner()
     {
@@ -35,6 +47,10 @@ class BannersAction extends AdminAction
         }
     }
 
+    /**
+    *更新
+    */
+
     public function editBanner()
     {
         $id = intval($_GET['id']);
@@ -44,6 +60,10 @@ class BannersAction extends AdminAction
         $this->assign('list', $list);
         $this->display();
     }
+
+    /**
+    *完成更新
+    */
 
     public function doEditBanner()
     {
@@ -62,12 +82,46 @@ class BannersAction extends AdminAction
         }
     }
 
+    /**
+    *删除
+    */
+
+    public function del()
+    {
+        $delIds = array();
+        $postIds = $this->_post('id');
+        if(!empty($postIds)){
+            $delIds = $postIds;
+        }
+        $getId = $this->_get('id');
+        if(!empty($getId)){
+            $delIds[] = $getId;
+        }
+        if(empty($delIds)){
+            $this->error('请选择您要删除的选项');
+        }
+        $arrMap['id'] = array('in',$delIds);
+        if(D('Banners')->where($arrMap)->delete()){
+            $this->success('删除成功');
+        }else{
+            $this->error('删除失败');
+        }
+    }
+
+    /**
+    *
+    */
+
     public function groupList()
     {
         $list = D('BannersGroup')->select();
         $this->assign('list', $list);
         $this->display();
     }
+
+    /**
+    *添加
+    */
 
     public function doAddGroup()
     {
@@ -80,6 +134,10 @@ class BannersAction extends AdminAction
         }
     }
 
+    /**
+    *
+    */
+
     public function editGroup()
     {
         $id = intval($_GET['id']);
@@ -87,6 +145,10 @@ class BannersAction extends AdminAction
         $this->assign('info', $info);
         $this->display();
     }
+
+    /**
+    *
+    */
 
     public function doEditGroup()
     {
@@ -96,6 +158,28 @@ class BannersAction extends AdminAction
             $this->success('更新成功');
         }else{
             $this->error('更新失败');
+        }
+    }
+
+    public function del()
+    {
+        $delIds = array();
+        $postIds = $this->_post('id');
+        if(!empty($postIds)){
+            $delIds = $postIds;
+        }
+        $getId = $this->_get('id');
+        if(!empty($getId)){
+            $delIds[] = $getId;
+        }
+        if(empty($delIds)){
+            $this->error('请选择您要删除的选项');
+        }
+        $arrMap['id'] = array('in',$delIds);
+        if (D(BannersGroup)->where($arrMap)->delete()) {
+            $this->success('删除成功');
+        }else{
+            $this->error('删除失败');
         }
     }
 }
